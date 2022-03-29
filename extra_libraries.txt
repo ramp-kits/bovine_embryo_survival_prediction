@@ -1,0 +1,3 @@
+torch  # pytorch cudatoolkit
+torchvision
+opencv-contrib-python # opencv

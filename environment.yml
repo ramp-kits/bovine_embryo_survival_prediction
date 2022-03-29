@@ -1,0 +1,31 @@
+name: bovmovies2pred
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - scipy
+  - numpy
+  - pandas
+  - jupyter
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - opencv
+  - pyyaml
+  - torchvision
+  - pytorch
+  - cudatoolkit=10.2
+  - tensorflow-gpu
+  - cloudpickle
+
+
+  # dev
+  - flake8
+  - black
+
+
+  - pip
+  - pip:
+    - ramp-workflow
+    - osfclient
