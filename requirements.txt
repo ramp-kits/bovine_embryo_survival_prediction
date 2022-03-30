@@ -1,5 +1,5 @@
 # ramp specifics
-ramp-workflow
+git+https://github.com/paris-saclay-cds/ramp-workflow
 osfclient
 
 # generic datascience

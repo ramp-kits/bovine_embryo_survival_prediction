@@ -19,7 +19,6 @@ dependencies:
   - tensorflow-gpu
   - cloudpickle
 
-
   # dev
   - flake8
   - black
@@ -27,5 +26,5 @@ dependencies:
 
   - pip
   - pip:
-    - ramp-workflow
     - osfclient
+    - git+https://github.com/paris-saclay-cds/ramp-workflow
