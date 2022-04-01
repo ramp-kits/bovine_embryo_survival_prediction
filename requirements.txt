@@ -1,0 +1,22 @@
+# ramp specifics
+git+https://github.com/paris-saclay-cds/ramp-workflow
+osfclient
+
+# generic datascience
+numpy
+scipy
+pandas
+matplotlib
+seaborn
+jupyter
+
+scikit-learn
+tensorflow-gpu
+
+# dev
+flake8
+black
+
+# utils
+cloudpickle
+pyyaml

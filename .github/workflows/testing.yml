@@ -1,0 +1,70 @@
+name: 'build'
+on:
+  push:
+    branches:
+      - master
+      - main
+  pull_request:
+    branches:
+      - master
+      - main
+
+jobs:
+  check_same_deps:
+    name: Check pip and conda install same env
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        run: pip install pyyaml
+      - name: Check same requirements
+        run: python .github/workflows/check_deps.py
+
+  build_conda:
+    name: Ubuntu conda
+    runs-on: "ubuntu-latest"
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: anaconda-client-env
+          environment-file: environment.yml
+          python-version: 3.8
+          auto-activate-base: false
+      - name: Test conda
+        run: |
+          conda info
+          conda list
+          python download_data.py
+          ramp-test --quick-test
+  build_pip:
+    name: Linux pip
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 nbconvert[test]
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        if [ -f extra_libraries.txt ]; then pip install -r extra_libraries.txt; fi
+    - name: Test pip
+      run: |
+        flake8 *.py submissions/*/*.py
+        python download_data.py
+        ramp-test --quick-test
+        ramp-test --submission starting_kit --quick-test
+        jupyter nbconvert --execute bovmovies2pred_starting_kit.ipynb --to html --ExecutePreprocessor.kernel_name=python3 
