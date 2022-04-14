@@ -27,4 +27,4 @@ dependencies:
   - pip
   - pip:
     - osfclient
-    - git+https://github.com/paris-saclay-cds/ramp-workflow
+    - ramp-workflow
