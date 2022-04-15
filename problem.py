@@ -14,7 +14,7 @@ from rampwf.utils.importing import import_module_from_source
 #
 # Challenge title
 
-problem_title = "Bovine embryos early classification"
+problem_title = "Bovine embryos survival prediction"
 
 
 # --------------------------------------------------
@@ -215,7 +215,7 @@ class WeightedClassificationError(rw.score_types.BaseScoreType):
         y_pred = y_pred[
             :,
             self.time_idx
-            * n_classes: (self.time_idx + 1)
+            * n_classes : (self.time_idx + 1)  # noqa:E203
             * n_classes,  # noqa:E203
         ]
 
