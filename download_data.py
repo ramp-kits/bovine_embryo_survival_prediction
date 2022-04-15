@@ -12,7 +12,7 @@ from osfclient.exceptions import UnauthorizedException
 
 LOCAL_DATA = Path(__file__).parent / "data"
 
-CHALLENGE_NAME = "bovmovies2pred"
+CHALLENGE_NAME = "bovine_embryo_survival_prediction"
 # you might choosing checking for the correct checksum, if not set
 # data_checksum to None
 RAMP_FOLDER_CONFIGURATION = {
