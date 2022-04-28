@@ -277,7 +277,9 @@ class VideoReader:
         """
         import cv2
 
-        if frame_time not in self.frame_times:
+        if frame_time is None:
+            frame_time = self.frame_times[-1]
+        elif frame_time not in self.frame_times:
             raise ValueError(
                 "The specified frame time must me within the time "
                 "interval of the video."
