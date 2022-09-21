@@ -2,13 +2,14 @@
 
 import os
 import copy
+from matplotlib import cm
 import numpy as np
 import pandas as pd
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import ShuffleSplit
 import rampwf as rw
 from rampwf.utils.importing import import_module_from_source
-
+import matplotlib.pyplot as plt
 
 # --------------------------------------------------
 #
@@ -23,7 +24,7 @@ problem_title = "Bovine embryos survival prediction"
 
 _prediction_label_names = ["A", "B", "C", "D", "E", "F", "G", "H"]
 
-pred_times = [27, 32, 37, 40, 44, 48, 53, 58, 63, 94, None]
+pred_times = [27, 32, 37, 40, 44, 48, 53, 58, 63, 94]
 Predictions = rw.prediction_types.make_multiclass(
     label_names=_prediction_label_names * len(pred_times)
 )
@@ -382,6 +383,41 @@ class VideoReader:
         self.video.set(cv2.CAP_PROP_POS_FRAMES, 0)
 
         return res
+
+    def plot_sequence(self, begin_time=None, end_time=None, fig_width=20.0):
+        """Plots the result of read_sequence.
+
+        Args:
+            begin_time (float, optional): The time where the extraction begins.
+            Defaults to None.
+            end_time (float, optional):  The time where the extraction ends.
+            Defaults to None.
+            fig_width (float, optional): The total figure width, height is
+            adapted automatically.
+
+        Returns:
+            None (but displays the matplotlib figure).
+        """
+        vid_arr = self.read_sequence(begin_time, end_time)
+        n_vids = vid_arr.shape[0]
+
+        # Create subplots of 10 columns
+        num_cols = 10
+        num_rows = int(n_vids // num_cols)
+        num_rows = num_rows + 1 if n_vids % num_cols != 0 else num_rows
+
+        fig_height = fig_width * num_rows / num_cols
+
+        fig = plt.figure(figsize=(fig_width, fig_height))
+        for i in range(1, num_rows * num_cols + 1):
+            if i - 1 >= n_vids:
+                break
+            img = vid_arr[i - 1]
+            fig.add_subplot(num_rows, num_cols, i)
+            plt.imshow(img, cmap="gray")
+            plt.axis("off")
+
+        plt.show()
 
 
 def _read_data(path, dir_name, classification="class"):
