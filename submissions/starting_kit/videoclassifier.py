@@ -1,4 +1,3 @@
-
 import numpy as np
 
 
@@ -12,6 +11,12 @@ class VideoClassifier(object):
         pass
 
     def predict(self, videos: list, pred_time: float):
+        # random soft proba
         proba = np.random.rand(len(videos), self.n_classes)
         proba /= proba.sum(axis=1)[:, np.newaxis]
+
+        # random hard proba
+        # idx = np.random.choice(range(self.n_classes), len(videos))
+        # proba = np.zeros((len(videos), self.n_classes))
+        # proba[range(len(videos)), idx] = 1
         return proba

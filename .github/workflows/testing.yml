@@ -4,6 +4,7 @@ on:
     branches:
       - master
       - main
+      - rnn-cnn-baseline
   pull_request:
     branches:
       - master
