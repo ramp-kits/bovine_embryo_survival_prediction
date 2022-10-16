@@ -129,7 +129,29 @@ def download_from_osf(private, username=None, password=None):
         # Uncompress the data in the data folder
         print("Extracting now...", end="", flush=True)
         with tarfile.open(ARCHIVE_PATH) as tf:
-            tf.extractall(LOCAL_DATA)
+            
+            import os
+            
+            def is_within_directory(directory, target):
+                
+                abs_directory = os.path.abspath(directory)
+                abs_target = os.path.abspath(target)
+            
+                prefix = os.path.commonprefix([abs_directory, abs_target])
+                
+                return prefix == abs_directory
+            
+            def safe_extract(tar, path=".", members=None, *, numeric_owner=False):
+            
+                for member in tar.getmembers():
+                    member_path = os.path.join(path, member.name)
+                    if not is_within_directory(path, member_path):
+                        raise Exception("Attempted Path Traversal in Tar File")
+            
+                tar.extractall(path, members, numeric_owner=numeric_owner) 
+                
+            
+            safe_extract(tf, LOCAL_DATA)
         print("Ok.")
 
         # Clean the directory by removing the archive
