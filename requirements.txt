@@ -12,6 +12,8 @@ jupyter
 
 scikit-learn
 tensorflow-gpu
+torch
+torchvision
 
 # dev
 flake8
