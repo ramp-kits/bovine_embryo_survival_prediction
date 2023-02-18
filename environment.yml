@@ -11,12 +11,13 @@ dependencies:
   - matplotlib
   - seaborn
   - scikit-learn
+  - scikit-image
   - opencv
   - pyyaml
   - torchvision
   - pytorch
   - cudatoolkit=10.2
-  - tensorflow-gpu
+  - tensorflow
   - cloudpickle
 
   # dev
