@@ -17,7 +17,7 @@ dependencies:
   - torchvision
   - pytorch
   - cudatoolkit=10.2
-  - tensorflow-gpu
+  - tensorflow
   - cloudpickle
 
   # dev
