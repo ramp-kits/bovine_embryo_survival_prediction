@@ -19,6 +19,7 @@ dependencies:
   - cudatoolkit=10.2
   - tensorflow
   - cloudpickle
+  - xgboost
 
   # dev
   - flake8
