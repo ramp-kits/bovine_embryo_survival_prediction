@@ -3,3 +3,4 @@ torchvision
 opencv-contrib-python # opencv
 tensorflow
 scikit-image
+xgboost
