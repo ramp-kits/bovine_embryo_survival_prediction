@@ -1,4 +1,4 @@
-torch  # pytorch cudatoolkit
+torch  # pytorch pytorch-cuda
 torchvision
 opencv-contrib-python # opencv
 tensorflow
