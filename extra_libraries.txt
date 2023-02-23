@@ -5,4 +5,4 @@ tensorflow
 scikit-image
 xgboost
 einops
-libcufile=1.4.0.31
+libcufile==1.4.0.31
