@@ -1,6 +1,7 @@
 name: bovine_embryo_survival_prediction
 channels:
   - pytorch
+  - nvidia
   - conda-forge
   - defaults
 dependencies:
@@ -16,7 +17,7 @@ dependencies:
   - pyyaml
   - torchvision
   - pytorch
-  - cudatoolkit=10.2
+  - pytorch-cuda=11.6
   - tensorflow
   - cloudpickle
   - xgboost
