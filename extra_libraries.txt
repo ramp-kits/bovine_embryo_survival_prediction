@@ -5,3 +5,4 @@ tensorflow
 scikit-image
 xgboost
 einops
+libcufile

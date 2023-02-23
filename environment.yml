@@ -18,6 +18,7 @@ dependencies:
   - torchvision
   - pytorch
   - pytorch-cuda=11.6
+  - libcufile=1.4.0.31
   - tensorflow
   - cloudpickle
   - xgboost
